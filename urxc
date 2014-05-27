@@ -1,0 +1,22 @@
+#!/usr/bin/zsh
+
+fgarr=( 'light green' 'light gray' 'light cyan' 'light yellow' 'light blue' )
+tintarr=( 'white' 'light gray' 'light cyan' 'light yellow' 'light blue' )
+
+fg=$fgarr[$(($RANDOM%${#fgarr}))+1]
+tc=$tintarr[$(($RANDOM%${#tintarr}))+1]
+sh=$((($RANDOM % 5 + 1) * 10))
+
+if [[ $1 = 'str' ]]; then
+	shift
+    /usr/bin/urxvtc -depth 32 -fg "$fg" -tint $tc -bg rgba:0000/0000/0000/aaaa $@
+    exit 0
+fi
+
+if [[ $1 = 'tr' ]]; then
+	shift
+    /usr/bin/urxvtc -depth 32 -fg "$fg" -tint $tc -bg rgba:0000/0000/0000/0000 $@
+    exit 0
+fi
+
+/usr/bin/urxvtc -depth 32 -fg "$fg" $@

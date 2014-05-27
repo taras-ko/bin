@@ -1,0 +1,19 @@
+#!/usr/bin/zsh
+#стартует urxvt в каталоге указаном в $@
+
+#i3-msg "exec urxvt -tr -cd $PWD"
+
+fgarr=( 'light green' 'light gray' 'light cyan' 'light yellow' 'light blue' 'orange' )
+tintarr=( 'light gray' 'light cyan' 'light yellow' 'light blue' 'pink' )
+
+bg='rgba:0000/0000/0000/aaaa'
+fg=$fgarr[$(($RANDOM%${#fgarr}))+1]
+tc=$tintarr[$(($RANDOM%${#tintarr}))+1]
+sh=$((($RANDOM % 5 + 1) * 10))
+
+if [ $1 ]
+then
+	i3-msg "exec urxvtc -depth 32 -fg '$fg' -tint '$tc' -bg $bg -sh $sh -cd $PWD"
+else
+	i3-msg "exec urxvtc -depth 32 -fg '$fg' -tint '$tc' -bg $bg -sh $sh -cd $PWD"
+fi
