@@ -1,0 +1,10 @@
+#!/bin/bash
+size=$(xdpyinfo  | awk '/dimensions:/ {print $2}'| sed 's/3840/1920/')
+
+args=(
+	-f x11grab -r 25 -s ${size} -i ${DISPLAY}
+	-f alsa -i pulse
+    -acodec ac3 -vcodec libx264 -y
+)
+
+exec ffmpeg "${args[@]}" ${1:-/tmp/x11.mkv}
